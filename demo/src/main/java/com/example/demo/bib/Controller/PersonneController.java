@@ -1,4 +1,4 @@
-package com.example.demo.bib;
+package com.example.demo.bib.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,23 +10,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.bib.Personne;
-import com.example.demo.bib.PersonneRepository;
-import com.example.demo.bib.PersonneService;
-
-
+import com.example.demo.bib.Repository.PersonneRepository;
+import com.example.demo.bib.Services.PersonneService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PersonneController {
-	
-	
+
 	@Autowired
 	private PersonneService personneService;
 	@Autowired
 	private PersonneRepository personneRepository;
-
 
 	@GetMapping("/login")
 	public String login(Model model) {
@@ -44,18 +40,16 @@ public class PersonneController {
 		}
 	}
 
-
 	@PostMapping("/register")
 	public String register(
 			@RequestParam String regEmail,
-			@RequestParam String regPassword, 
+			@RequestParam String regPassword,
 			@RequestParam String firstName,
 			@RequestParam String lastName) {
 		personneService.ajoutPersonne(
-				regEmail,regPassword,firstName,lastName);
+				regEmail, regPassword, firstName, lastName);
 		return "redirect:/login";
 	}
- 
 
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
