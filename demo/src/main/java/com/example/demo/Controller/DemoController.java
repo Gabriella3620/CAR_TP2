@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.Personne;
 import com.example.demo.Repository.PersonneRepository;
 import com.example.demo.Services.PersonneService;
+import com.example.demo.Agenda;
+import com.example.demo.Repository.AgendaRepository;
+import com.example.demo.Services.AgendaService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class PersonneController {
+public class DemoController {
 
 	@Autowired
 	private PersonneService personneService;
@@ -42,12 +45,12 @@ public class PersonneController {
 
 	@PostMapping("/register")
 	public String register(
-			@RequestParam String regEmail,
-			@RequestParam String regPassword,
+			@RequestParam String Email,
+			@RequestParam String Password,
 			@RequestParam String firstName,
 			@RequestParam String lastName) {
 		personneService.ajoutPersonne(
-				regEmail, regPassword, firstName, lastName);
+				Email, Password, firstName, lastName);
 		return "redirect:/login";
 	}
 
@@ -60,4 +63,15 @@ public class PersonneController {
 		return "redirect:/login";
 
 	}
+
+	/*
+	 * @PostMapping("/addAgenda")
+	 * public String ajouterAgenda(
+	 * 
+	 * @RequestParam String nom
+	 * ) {
+	 * agendaService.ajouterAgenda(nom);
+	 * return "redirect:/loginsuccess";
+	 * }
+	 */
 }
