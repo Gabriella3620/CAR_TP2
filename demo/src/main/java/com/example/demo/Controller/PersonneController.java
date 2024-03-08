@@ -1,4 +1,4 @@
-package com.example.demo.bib.Controller;
+package com.example.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.bib.Personne;
-import com.example.demo.bib.Repository.PersonneRepository;
-import com.example.demo.bib.Services.PersonneService;
+import com.example.demo.Personne;
+import com.example.demo.Repository.PersonneRepository;
+import com.example.demo.Services.PersonneService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
