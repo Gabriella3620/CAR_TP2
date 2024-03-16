@@ -1,6 +1,7 @@
 package com.tpagenda.tpagenda.Controller;
-import com.tpagenda.tpagenda.Personne;
-import com.tpagenda.tpagenda.Agenda;
+
+import com.tpagenda.tpagenda.entity.Personne;
+import com.tpagenda.tpagenda.entity.Agenda;
 import com.tpagenda.tpagenda.Repository.PersonneRepository;
 import com.tpagenda.tpagenda.Services.AgendaService;
 
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -27,11 +26,15 @@ public class DemoController {
     @Autowired
     private AgendaService agendaService;
 
-
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("personne", new Personne());
         return "login";
+    }
+
+    @GetMapping("agenda/home")
+    public String home() {
+        return "redirect:/loginOK";
     }
 
     @PostMapping("/login")
@@ -41,13 +44,12 @@ public class DemoController {
         Personne personne = personneRepository.findByEmailAndPassword(email, password);
         if (personne != null) {
             session.setAttribute("email", email);
+            session.setMaxInactiveInterval(1500);
             return "redirect:/loginOK";
         } else {
             return "redirect:/loginError";
         }
     }
-
-   
 
     @PostMapping("/register")
     public String register(@RequestParam String regEmail,
@@ -61,11 +63,17 @@ public class DemoController {
     @GetMapping("loginOK")
     public String loginOK(Model model, HttpSession session) {
         String email = (String) session.getAttribute("email");
+        System.out.println(email);
+        if (email == null) {
+
+            return "redirect:/login";
+        }
         Iterable<Agenda> agendas = agendaService.getAgendaByEmail(email);
         model.addAttribute("agendas", agendas);
         model.addAttribute("newAgenda", new Agenda());
         return "loginOK";
     }
+
     @GetMapping("/loginError")
     public String loginError() {
         return "loginError";
@@ -83,6 +91,7 @@ public class DemoController {
             return "redirect:/loginError";
         }
     }
+
     @PostMapping("/addAgenda")
     public String addAgenda(@RequestParam String nom, HttpSession session) {
         String email = (String) session.getAttribute("email");
