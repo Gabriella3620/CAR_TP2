@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class DemoController {
+public class MainController {
     @Autowired
     private PersonneService personneServices;
     @Autowired
@@ -41,7 +41,7 @@ public class DemoController {
     public String login(@RequestParam("email") String email,
             @RequestParam("password") String password,
             HttpSession session) {
-        Personne personne = personneRepository.findByEmailAndPassword(email, password);
+        Personne personne = personneServices.findUser(email, password);
         if (personne != null) {
             session.setAttribute("email", email);
             session.setMaxInactiveInterval(1500);
@@ -62,7 +62,7 @@ public class DemoController {
 
     @GetMapping("loginOK")
     public String loginOK(Model model, HttpSession session) {
-        String email = (String) session.getAttribute("email");
+        String email = (String) session.getAttribute("email");// on récupère l'email de la session
         System.out.println(email);
         if (email == null) {
 
@@ -100,8 +100,7 @@ public class DemoController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
+    public String logout(HttpSession session) {
         if (session != null) {
             session.invalidate();
         }

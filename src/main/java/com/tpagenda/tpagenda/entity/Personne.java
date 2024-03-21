@@ -1,4 +1,4 @@
-package com.tpagenda.tpagenda;
+package com.tpagenda.tpagenda.entity;
 
 import java.util.List;
 
@@ -6,8 +6,11 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "personne")
+
 public class Personne {
 
     @Id

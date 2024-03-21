@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .button {
+            border-style: solid;
+            border-width : 1px 1px 1px 1px;
+            text-decoration : none;
+            padding : 4px;
+            border-color : #000000
+        }
+    </style>
+</head>
+<body>
+<h2 th:text="${'Evenements du calendrier:'+name}"></h2>
+<table>
+
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Start Date Time</th>
+        <th>End Date Time</th>
+        <th>Description</th>
+        <th>Agenda Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.id}"></td>
+        <td th:text="${event.startDateTime}"></td>
+        <td th:text="${event.endDateTime}"></td>
+        <td th:text="${event.description}"></td>
+        <td >  <a th:href="@{'/agenda/event/remove/'+${event.id}+'?name='+${name}}"> Supprimer  </a>  </td>
+    </tr>
+    </tbody>
+
+    <a style="margin-top: 50px" class="button" th:href="@{'/agenda/home'}"  >Accueil</a>
+</table>
+</body>
+</html>

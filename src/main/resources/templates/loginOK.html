@@ -4,12 +4,25 @@
     <title>Bonjour</title>
 </head>
 <body>
+<style>
+    .button {
+        border-style: solid;
+        border-width : 1px 1px 1px 1px;
+        text-decoration : none;
+        padding : 4px;
+        border-color : #000000
+    }
+</style>
     <h2>Bonjour</h2>
     <div>
         <h3>Liste des agendas</h3>
         <ul>
             <li th:each="agenda : ${agendas}">
-                <a th:href="@{'/loginOK/evenements/' + ${agenda.nom}}" th:text="${agenda.nom}">Voir les événements</a>
+                <span th:text="${agenda.nom}"/>
+
+
+                <a style="margin: 30px" class="button" th:href="@{'/agenda/event?name=' + ${agenda.nom}}" >Voir les événements</a>
+                <a style="margin: 30px" class="button" th:href="@{'/agenda/add-event?name=' + ${agenda.nom}}" >Ajouter événement </a>
             </li>
         </ul>
     </div>
@@ -25,8 +38,8 @@
         </form>
     </div>
     
-    <div>
-        <a href="/logout">Se déconnecter</a>
+    <div style="margin-top: 50px">
+        <a class="button" href="/logout">Se déconnecter</a>
     </div>
 </body>
 </html>
