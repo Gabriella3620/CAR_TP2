@@ -4,7 +4,7 @@ TP 2 – Spring
 
 Développement d' une application Spring de gestion d’agendas
 
-#### Clarification
+### Clarification
 
 Bonjour Monsieur,
 
