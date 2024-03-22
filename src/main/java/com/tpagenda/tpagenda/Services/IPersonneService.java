@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.tpagenda.tpagenda.entity.Personne;
 
 @Service
-public interface PersonneService {
+public interface IPersonneService {
     void addPerson(String email, String password, String prenom, String nom);
 
     Iterable<Personne> getAllPersonne();

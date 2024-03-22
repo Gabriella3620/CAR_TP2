@@ -1,13 +1,13 @@
 package com.tpagenda.tpagenda.Services.implementation;
 
-import com.tpagenda.tpagenda.Services.PersonneService;
+import com.tpagenda.tpagenda.Services.IPersonneService;
 import com.tpagenda.tpagenda.entity.Personne;
 import com.tpagenda.tpagenda.Repository.PersonneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonneServiceImpl implements PersonneService {
+public class PersonneServiceImpl implements IPersonneService {
 
     @Autowired
     private PersonneRepository personneRepository;

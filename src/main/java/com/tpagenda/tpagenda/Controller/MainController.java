@@ -3,9 +3,9 @@ package com.tpagenda.tpagenda.Controller;
 import com.tpagenda.tpagenda.entity.Personne;
 import com.tpagenda.tpagenda.entity.Agenda;
 import com.tpagenda.tpagenda.Repository.PersonneRepository;
-import com.tpagenda.tpagenda.Services.AgendaService;
+import com.tpagenda.tpagenda.Services.IAgendaService;
 
-import com.tpagenda.tpagenda.Services.PersonneService;
+import com.tpagenda.tpagenda.Services.IPersonneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +20,11 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class MainController {
     @Autowired
-    private PersonneService personneServices;
+    private IPersonneService personneServices;
     @Autowired
     private PersonneRepository personneRepository;
     @Autowired
-    private AgendaService agendaService;
+    private IAgendaService agendaService;
 
     @GetMapping("/login")
     public String login(Model model) {
