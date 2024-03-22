@@ -4,3 +4,4 @@ spring.h2.console.enabled=true
 
 # shema updating (othewhise default is drop-create)
 spring.jpa.hibernate.ddl-auto=update
+
